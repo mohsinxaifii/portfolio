@@ -190,6 +190,7 @@ body {
 
 .social-images-container {
     display: flex;
+    background-color: transparent;
     gap: 10px;
 }
 

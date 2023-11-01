@@ -12,7 +12,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .border-outline-box {
@@ -24,7 +24,7 @@ body {
     top: 2vw;
     bottom: 2vw;
     justify-content: space-between;
-    
+
 }
 
 .content-left {
@@ -87,6 +87,7 @@ body {
     padding: 1rem 2rem;
     transition: all ease-in .2s;
 }
+
 .navigation-menu a {
     background-color: transparent;
     text-decoration: none;
@@ -101,6 +102,7 @@ body {
     overflow-y: scroll;
     align-items: end;
     gap: 12px;
+    padding-bottom: 9vh;
 }
 
 .website-extra-margin {
@@ -141,7 +143,7 @@ body {
     transition: all ease-in .2s;
 }
 
-.website-name:hover{
+.website-name:hover {
     scale: 1.02;
 }
 
@@ -152,12 +154,13 @@ body {
     border-radius: 100%;
     transition: all ease-in .3s;
     cursor: pointer;
-    
+
 }
-.content-right-heading:hover{
+
+.content-right-heading:hover {
     color: #0d0d0d;
     background-color: white;
-    
+
 }
 
 .home-content-right {
@@ -185,14 +188,17 @@ body {
     list-style: none;
 }
 
-.social-images-container{
+.social-images-container {
     display: flex;
     gap: 10px;
 }
-.social-image{
+
+.social-image {
     height: 3rem;
 }
-.liHome:hover, .liWork:hover{
+
+.liHome:hover,
+.liWork:hover {
     color: #0d0d0d;
     background-color: white;
 }
@@ -207,10 +213,10 @@ body {
     --yellow: #EDB74D;
     --red: #EB6666;
     --green: #6FB18A;
-  }
-  
-  
-  .blob-cont {
+}
+
+
+.blob-cont {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -221,69 +227,208 @@ body {
     position: absolute;
 }
 
-  
-  
-  .blob {
+
+
+.blob {
     border-radius: 100px;
     filter: blur(60px);
-  }
-  
-  .yellow {
+}
+
+.yellow {
     background-color: var(--yellow);
     position: absolute;
     top: 200px;
     left: 100px;
     height: 200px;
     width: 200px;
-    
     animation: yellow 8s infinite ease;
-  }
-  
-  .green {
+}
+
+
+.green {
     background-color: var(--green);
     position: absolute;
     top: 80px;
     right: -20px;
     height: 200px;
     width: 250px;
-    
+
     animation: green 8s infinite ease;
-  }
-  
-  .red {
+}
+
+.red {
     background-color: var(--red);
     position: absolute;
     right: 0;
     top: 300px;
     height: 250px;
     width: 200px;
-    
+
     animation: red 8s infinite linear;
-  }
-  
-  @keyframes yellow {
-    0% {top: 200px; left: 100px; transform: scale(1);}
-    30% {top: 300px; left: 150px; transform: scale(1.2);}
-    60% {top: 100px; left: 200px; transform: scale(1.3);}
-    100% {top: 200px; left: 100px; transform: scale(1);}
-  }
-  
-  @keyframes green {
-    0% {top: 80px; right: -20px; transform: scale(1.2);}
-    30% {top: 300px; right: -20px;transform: scale(1);}
-    60% {top: 200px; right: 100px;transform: scale(1);}
-    100% {top: 80px; right: -20px; transform: scale(1.2);}
-  }
-  
-  @keyframes red {
-    0% {top: 250px; right: 0px; transform: scale(1);}
-    30% {top: 150px; right: 150px;transform: scale(1.4);}
-    60% {top: 250px; right: 100px;transform: scale(1);}
-    100% {top: 250px; right: 0px; transform: scale(1);}
-  }
-  
-  .hero {
+}
+
+@keyframes yellow {
+    0% {
+        top: 40vh;
+        left: 100px;
+        transform: scale(1);
+    }
+
+    30% {
+        top: 60vh;
+        left: 150px;
+        transform: scale(1.2);
+    }
+
+    60% {
+        top: 20vh;
+        left: 200px;
+        transform: scale(1.3);
+    }
+
+    100% {
+        top: 40vh;
+        left: 100px;
+        transform: scale(1);
+    }
+}
+
+@keyframes green {
+    0% {
+        top: 10vh;
+        right: -20px;
+        transform: scale(1.2);
+    }
+
+    30% {
+        top: 20vh;
+        right: -20px;
+        transform: scale(1);
+    }
+
+    60% {
+        top: 35vh;
+        right: 100px;
+        transform: scale(1);
+    }
+
+    100% {
+        top: 10vh;
+        right: -20px;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes red {
+    0% {
+        top: 35vh;
+        right: 0px;
+        transform: scale(1);
+    }
+
+    30% {
+        top: 15vh;
+        right: 150px;
+        transform: scale(1.4);
+    }
+
+    60% {
+        top: 5vh;
+        right: 100px;
+        transform: scale(1);
+    }
+
+    100% {
+        top: 35vh;
+        right: 0px;
+        transform: scale(1);
+    }
+}
+
+.hero {
     background: linear-gradient(to right, #151515 1px, transparent 1px) 0 0, linear-gradient(to right, #151515 1px, transparent 1px) 0 100%, linear-gradient(to left, #151515 1px, transparent 1px) 100% 0, linear-gradient(to left, #151515 1px, transparent 1px) 100% 100%, linear-gradient(to bottom, #151515 1px, transparent 1px) 0 0, linear-gradient(to bottom, #151515 1px, transparent 1px) 100% 0, linear-gradient(to top, #151515 1px, transparent 1px) 0 100%, linear-gradient(to top, #151515 1px, transparent 1px) 100% 100%;
     background-repeat: no-repeat;
     background-size: 20px 20px;
-  }
+}
+.work-heading-margin{
+    margin-top: 5vh;
+}
+
+@media (max-width: 1100px){
+    .border-outline-box {
+        flex-direction: column;
+    }
+    .website-container {
+        flex-direction: column-reverse;
+    }
+    .content-right-Work {
+        align-items: start;
+        margin: 10vw 0vw 0vw 2vw;
+    }
+    
+    .navigation-menu {
+        flex-direction: row;
+        gap: 10px;
+    }
+    .content-left {
+        margin: 2vw 2vw 0 2vw;
+        background-color: transparent;
+        display: flex;
+        flex-direction: row;
+    }
+    .website-extra-margin {
+        margin-top: 11vh;
+    }
+}
+@media (max-width: 670px) {
+    .content-left {
+        gap: 30px;
+        flex-direction: column;
+    }
+    .website-name {
+        font-size: 2.5rem;
+    }
+    .content-left {
+        margin: 5vw 5vw 0 5vw;
+    }
+    .content-right-Work {
+        margin: 10vw 5vw 0vw 5vw;
+    }
+    .content-right-Home {
+        margin: 0vw 5vw 5vw 5vw;
+        align-items: start;
+    }
+    
+    
+}
+@media(max-width:550px) {
+    .website-comment{
+        text-wrap: wrap;
+    }
+    .content-right-Work {
+        gap: 25px;
+    }
+    .website-name {
+        font-size: 2rem;
+    }
+}
+@media (max-width: 420px){
+    .name-header{
+        font-size: 2.8rem;
+        margin-bottom: 8px;
+    }
+    .navigation-menu li {
+        padding: 0.5rem 2rem;
+    }
+    .content-right-heading {
+        border-radius: 0 100px 100px;
+        background: transparent;
+    }
+    .website-extra-margin {
+        margin-top: 5vh;
+    }
+    .work-heading-margin {
+        margin-top: 1vh;
+    }
+    
+}

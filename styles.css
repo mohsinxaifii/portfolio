@@ -186,6 +186,7 @@ body {
 .content-right-Home a {
     text-decoration: none;
     list-style: none;
+    background-color: transparent;
 }
 
 .social-images-container {
@@ -196,6 +197,7 @@ body {
 
 .social-image {
     height: 3rem;
+    background-color: transparent;
 }
 
 .liHome:hover,

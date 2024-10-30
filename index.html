@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="bg-[#151312] font-poppins">
+    <header class="z-[1] fixed top-0 left-0 w-full h-[100px] backdrop-blur-md flex justify-center pt-4">
+        <div class="bg-[#1C1A19] flex justify-center items-center gap-3 p-4 w-fit mx-auto rounded-2xl h-fit">
+            <div class="relative p-2 group inline-block">
+                <img id="homeLink" class="cursor-pointer" src="./svg/home.svg" alt="Home">
+                <span
+                    class="font-poppins font-normal invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#1C1A19] text-white text-xs rounded px-2 py-1 absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    Home
+                </span>
+            </div>
+
+            <div class="relative p-2 group inline-block">
+                <img id="projectsLink" class="cursor-pointer" src="./svg/projects.svg" alt="Projects">
+                <span
+                    class="font-poppins font-normal invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#1C1A19] text-white text-xs rounded px-2 py-1 absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    Projects
+                </span>
+            </div>
+
+            <div class="relative p-2 group inline-block">
+                <img id="experienceLink" class="cursor-pointer" src="./svg/experience.svg" alt="Experience">
+                <span
+                    class="font-poppins font-normal invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#1C1A19] text-white text-xs rounded px-2 py-1 absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    Experience
+                </span>
+            </div>
+
+            <div class="relative p-2 group inline-block">
+                <img id="toolsLink" class="cursor-pointer" src="./svg/tools.svg" alt="Tools">
+                <span
+                    class="font-poppins font-normal invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#1C1A19] text-white text-xs rounded px-2 py-1 absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    Tools
+                </span>
+            </div>
+
+            <div class="relative p-2 group inline-block">
+                <img id="contactLink" class="w-[24px] invert filter cursor-pointer" src="./img/contact_2.png"
+                    alt="Tools">
+                <span
+                    class="font-poppins font-normal invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-opacity duration-300 ease-in-out bg-[#1C1A19] text-white text-xs rounded px-2 py-1 absolute -bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    Contact
+                </span>
+            </div>
+        </div>
+        <style>
+            * {
+                cursor: none;
+            }
+
+            .background {
+                width: 100vw;
+                height: 100vh;
+                pointer-events: none;
+                z-index: 99;
+                position: fixed;
+            }
+
+            .cursor {
+                width: 30px;
+                height: 30px;
+                border-radius: 45px;
+                border: 1px solid #D3D3D3;
+                z-index: 9999;
+                pointer-events: none;
+                transition: transform 0.1s ease-out, width 0.2s, height 0.2s;
+                margin-top: -95px;
+                margin-left: 10px;
+            }
+
+            .cursor-fixed {
+                margin-top: -95px;
+                margin-left: 10px;
+                pointer-events: none;
+                z-index: 300;
+                position: absolute;
+                width: 10px;
+                height: 10px;
+                border-radius: 45px;
+                background: #E4E4E4;
+            }
+
+            .nav-active {
+                border-radius: 10px;
+                background-color: #F46C38;
+                animation: bounce 0.5s ease-in-out;
+            }
+
+            @keyframes bounce {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-10px);
+                }
+            }
+        </style>
+    </header>
+    <main
+        class="mt-[60px] flex justify-center items-start gap-8 h-screen pt-[40px] max-md:flex-col max-md:gap-12 max-md:h-fit">
+        <div class="background max-md:hidden">
+            <div class="cursor-fixed"></div>
+            <div class="cursor">
+                <div class="inside_cursor"></div>
+            </div>
+        </div>
+        <script>
+            const $cursor = document.querySelector('.cursor');
+            const $cursorPoint = document.querySelector('.cursor-fixed');
+
+            let cursorX = 0, cursorY = 0;
+            const mouse = { x: 0, y: 0 };
+
+            // Track mouse movement
+            document.addEventListener('mousemove', (event) => {
+                mouse.x = event.clientX;
+                mouse.y = event.clientY;
+            });
+
+            // Animation loop for smooth cursor movement
+            const loop = () => {
+                window.requestAnimationFrame(loop);
+
+                // Update cursor position, centering on the mouse
+                cursorX = mouse.x - $cursor.clientWidth / 2; // Center the cursor
+                cursorY = mouse.y - $cursor.clientHeight / 2; // Center the cursor
+
+                // Apply the new cursor position
+                $cursor.style.transform = `translateX(${cursorX}px) translateY(${cursorY}px)`;
+            }
+
+            // Start the animation loop
+            loop();
+
+            // Fixed dot that follows the mouse directly
+            document.addEventListener('mousemove', (event) => {
+                const mousePointX = event.clientX - $cursorPoint.clientWidth / 2; // Center the fixed dot
+                const mousePointY = event.clientY - $cursorPoint.clientHeight / 2; // Center the fixed dot
+                $cursorPoint.style.transform = `translateX(${mousePointX}px) translateY(${mousePointY}px)`;
+            });
+
+            // Scale cursor on mousedown
+            document.addEventListener('mousedown', () => {
+                $cursor.style.width = '50px';
+                $cursor.style.height = '50px';
+            });
+
+            // Reset cursor size on mouseup
+            document.addEventListener('mouseup', () => {
+                $cursor.style.width = '30px';
+                $cursor.style.height = '30px';
+            });
+        </script>
+        <div
+            class="fixed h-4/5 w-[400px] flex items-start justify-start ml-[-430px] max-lg:w-[300px] max-lg:ml-[-330px] max-md:unset-position max-md:w-[90%] max-md:my-0 max-md:mx-auto max-md:h-fit">
+            <div
+                class="overflow-hidden w-full rounded-xl bg-white h-fit p-4 flex justify-start items-center flex-col text-white text-center max-md:flex-row max-md:gap-4 max-sm:flex-col">
+                <img class="h-auto w-full rounded-2xl mb-4 max-md:w-[300px] max-sm:w-full" src="./img/mohsin.png"
+                    alt="Mohsin Saifi">
+                <div class="w-full h-fit flex justify-start items-center flex-col">
+                    <h1 class="text-4xl font-extrabold my-2 text-black">MOHSIN SAIFI</h1>
+                    <p class="text-sm text-black max-lg:text-xs">Software Developer at RWT | Ex TAC | Co-Founder at
+                        Nuktacheen | Shopify
+                        Developer | React Native | Creative Visionary
+                    </p>
+                    <div class="flex gap-8 w-full justify-center items-center mt-6">
+                        <img class="opacity-30 w-[30px] h-auto aspect-square rounded-lg drop-shadow-xl"
+                            src="./img/gmail (1).png" alt="Gmail">
+                        <img class="opacity-30 w-[30px] h-auto aspect-square rounded-lg drop-shadow-xl"
+                            src="./img/linkedin (1).png" alt="linkedin">
+                        <img class="opacity-30 w-[30px] h-auto aspect-square rounded-lg drop-shadow-xl"
+                            src="./img/upwork (1).png" alt="upwork">
+                        <img class="opacity-30 w-[30px] h-auto aspect-square rounded-lg drop-shadow-xl"
+                            src="./img/instagram (1).png" alt="instagram">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div
+            class="absolute flex flex-col justify-start items-start max-w-[600px] w-[65%] ml-[630px] overflow-y-scroll bg-[#151312] text-white scrollbar-hide max-lg:w-[300px] max-lg:max-w-[300px] max-lg:ml-[330px] max-md:unset-position max-md:my-0 max-md:mx-auto max-md:w-[90%] max-md:max-w-[90%] max-md:text-center max-sm:text-left">
+            <section id="home" class="max-md:w-full">
+                <h2 class="text-7xl font-bold max-lg:text-5xl">SOFTWARE <span class="text-[#353334]">DEVELOPER</span>
+                </h2>
+                <p class="text-sm mt-8 max-lg:mt-4 max-lg:text-xs">As a Software Developer, I specialize in full-stack
+                    development with
+                    expertise
+                    in Shopify and React Native. I build scalable, responsive web and mobile apps, focusing on
+                    delivering user-centric digital experiences. From custom Shopify themes to app integrations, I blend
+                    technical skill with creative problem-solving to create impactful solutions. I’m passionate about
+                    driving innovation in web and mobile development and am excited to take on challenges that push
+                    digital boundaries.</p>
+            </section>
+            <section id="projects" class="mt-16 max-lg:mt-10 max-md:w-full">
+                <h2 class="text-7xl font-bold max-lg:text-5xl">RECENT <span class="text-[#353334]">PROJECTS</span></h2>
+                <div class="mt-8 max-lg:mt-4 flex flex-col gap-4">
+                    <a class="" href="https://solethreads.com">
+                        <div
+                            class="flex justify-between items-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                            <div
+                                class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                                <img class="h-full" src="./img/solethreads.png" alt="Solethreads">
+                                <div class="max-md:flex max-md:flex-col max-md:justify-start max-md:items-start">
+                                    <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">
+                                        Solethreads</h2>
+                                    <p class="text-sm max-lg:text-xs">Shopify Ecommerce Website</p>
+                                </div>
+                            </div>
+                            <img class="-rotate-45 h-6 mt-4" src="./svg/arrow.svg" alt="">
+                        </div>
+                    </a>
+                    <a class="" href="https://theayurvedaco.com">
+                        <div
+                            class="flex justify-between items-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                            <div
+                                class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                                <img class="h-full" src="./img/theayurvedaco.png" alt="Solethreads">
+                                <div class="max-md:flex max-md:flex-col max-md:justify-start max-md:items-start">
+                                    <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">The
+                                        Ayurveda Co.</h2>
+                                    <p class="text-sm max-lg:text-xs">Shopify Ecommerce Website</p>
+                                </div>
+                            </div>
+                            <img class="-rotate-45 h-6 mt-4" src="./svg/arrow.svg" alt="">
+                        </div>
+                    </a>
+                    <a class="" href="https://codetocouture.com">
+                        <div
+                            class="flex justify-between items-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                            <div
+                                class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px]">
+                                <img class="h-full" src="./img/codetocouture.png" alt="Solethreads">
+                                <div class="max-md:flex max-md:flex-col max-md:justify-start max-md:items-start">
+                                    <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">Code to
+                                        Couture</h2>
+                                    <p class="text-sm max-lg:text-xs">Brand Portfolio</p>
+                                </div>
+                            </div>
+                            <img class="-rotate-45 h-6 mt-4" src="./svg/arrow.svg" alt="">
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section id="experience" class="mt-16 max-lg:mt-10 max-md:w-full">
+                <h2 class="text-7xl font-bold max-lg:text-5xl">2+ YEARS OF <span
+                        class="text-[#353334]">EXPERIENCE</span></h2>
+                <div class="mt-8 flex flex-col gap-8 max-lg:mt-4">
+                    <div class="flex flex-col gap-2">
+                        <div
+                            class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px] max-md:flex-col max-md:h-[160px] max-md:max-h-[160px] max-sm:flex-row max-sm:h-[100px] max-sm:max-h-[100px]">
+                            <img class="h-full p-4 aspect-square w-auto bg-white rounded-lg max-md:h-[100px]"
+                                src="./svg/rwt-logo.svg" alt="Solethreads">
+                            <div>
+                                <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">Radiant Web
+                                    Technologies</h2>
+                                <p class="text-sm max-lg:text-xs opacity-70">Software Developer | July 2024 - Present
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-sm max-lg:text-xs">
+                            I manage multiple clients, providing full support in Shopify theme customizations and app
+                            integrations to tailor e-commerce sites to their needs. My role covers theme adjustments,
+                            feature enhancements, and troubleshooting to ensure seamless store functionality.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div
+                            class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px] max-md:flex-col max-md:h-[160px] max-md:max-h-[160px] max-sm:flex-row max-sm:h-[100px] max-sm:max-h-[100px]">
+                            <img class="h-full p-4 aspect-square w-auto bg-white rounded-lg max-md:h-[100px]"
+                                src="./img/tac.jpg" alt="Solethreads">
+                            <div>
+                                <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">The
+                                    Ayurveda Co.</h2>
+                                <p class="text-sm max-lg:text-xs opacity-70">Product Executive | Aug 2023 - July 2024
+                                </p>
+                            </div>
+                        </div>
+                        <p class="text-sm max-lg:text-xs">
+                            As a Full Stack Web Developer at The Ayurveda Co., I led the redevelopment of the company's
+                            e-commerce site. This involved a Shopify theme overhaul using Liquid, where I implemented
+                            design enhancements and extended functionality.
+                        </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div
+                            class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px] max-md:flex-col max-md:h-[160px] max-md:max-h-[160px] max-sm:flex-row max-sm:h-[100px] max-sm:max-h-[100px]">
+                            <img class="h-full p-4 aspect-square w-auto bg-white rounded-lg max-md:h-[100px]"
+                                src="./img/allied.jpg" alt="Solethreads">
+                            <div>
+                                <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">Allied
+                                    Technologies</h2>
+                                <p class="text-sm max-lg:text-xs opacity-70">App Tester/Visual Designer | Feb 2023 - May
+                                    2023</p>
+                            </div>
+                        </div>
+                        <p class="text-sm max-lg:text-xs">
+                            I contributed to development by creating essential visual assets for web and mobile
+                            applications. Additionally. I played a role in quality assurance, testing Android and iOS
+                            apps, ensuring design. driven development, and collaborating with cross-functional teams to
+                            deliver user-centric solutions. </p>
+                    </div>
+                    <div class="flex flex-col gap-2">
+                        <div
+                            class="flex gap-4 items-center justify-start h-[100px] max-h-[100px] max-lg:h-[70px] max-lg:max-h-[70px] max-md:flex-col max-md:h-[160px] max-md:max-h-[160px] max-sm:flex-row max-sm:h-[100px] max-sm:max-h-[100px]">
+                            <img class="h-full p-4 aspect-square w-auto bg-white rounded-lg max-md:h-[100px]"
+                                src="./img/lppr.jpg" alt="Solethreads">
+                            <div>
+                                <h2 class="font-bold text-2xl max-lg:text-[1.3rem] max-lg:leading-[1.55rem]">LPPR</h2>
+                                <p class="text-sm max-lg:text-xs opacity-70">Web Developer & Brand Identity Designer |
+                                    Feb 2022 -
+                                    May 2022</p>
+                            </div>
+                        </div>
+                        <p class="text-sm max-lg:text-xs">
+                            At LPP Review. I spearheaded website development, established a distinctive brand identity,
+                            and integrated essential web functionalities, resulting in a cohesive and user-friendly
+                            online presence that aligned with the company's core values and objectives.</p>
+                    </div>
+                </div>
+            </section>
+            <section id="tools" class="mt-16 max-lg:mt-10 max-md:w-full">
+                <h2 class="text-7xl font-bold max-lg:text-5xl">PREMIUM <span class="text-[#353334]">TOOLS</span></h2>
+                <div class="flex flex-wrap mt-8 gap-y-4 gap-x-4 max-lg:mt-4">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                    <img class="h-auto w-[14%] bg-white p-4 rounded-lg max-lg:w-[20%] max-md:w-[16%] max-sm:w-[12%] max-md:p-2"
+                        src="./img/vscode.png" alt="Visual Studio Code">
+                </div>
+            </section>
+            <section id="contact" class="mt-16 max-lg:mt-10 max-md:w-full">
+                <h2 class="text-7xl font-bold max-lg:text-5xl">GET IN <span class="text-[#353334]">TOUCH</span></h2>
+                <form class="mt-8 max-lg:mt-4" action="https://formspree.io/f/xovqjvpn" method="POST">
+                    <div class="flex justify-between">
+                        <div class="w-[48.5%]">
+                            <label for="name"
+                                class="block text-white text-sm font-normal mb-1  max-lg:text-xs text-left">Name</label>
+                            <input placeholder="Your Name" type="text" id="name" name="name" required
+                                class="w-full px-3 py-2 rounded-lg focus:outline-none bg-[#353334] placeholder:text-sm max-lg:placeholder:text-xs">
+                        </div>
+                        <div class="w-[48.5%]">
+                            <label for="email"
+                                class="block text-white text-sm font-normal mb-1 max-lg:text-xs text-left">Email</label>
+                            <input placeholder="your@mail.com" type="email" id="email" name="email" required
+                                class="w-full px-3 py-2 rounded-lg focus:outline-none bg-[#353334] placeholder:text-sm max-lg:placeholder:text-xs">
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="message"
+                            class="block text-white text-sm font-normal mb-1 max-lg:text-xs text-left">Message</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Type..."
+                            class="w-full px-3 py-2 rounded-lg focus:outline-none bg-[#353334] placeholder:text-sm max-lg:placeholder:text-xs"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-[#F46C38] text-white font-bold py-2 px-4 rounded-lg focus:outline-none mt-4 mb-16">
+                        Submit
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const sections = document.querySelectorAll("section");
+            const navLinks = {
+                home: document.getElementById('homeLink').parentElement,
+                projects: document.getElementById('projectsLink').parentElement,
+                experience: document.getElementById('experienceLink').parentElement,
+                tools: document.getElementById('toolsLink').parentElement,
+                contact: document.getElementById('contactLink').parentElement
+            };
+
+            const scrollToSection = (id) => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const topPosition = section.getBoundingClientRect().top + window.scrollY - 110;
+                    window.scrollTo({ top: topPosition, behavior: 'smooth' });
+                }
+            };
+
+            document.getElementById('homeLink').addEventListener('click', () => scrollToSection('home'));
+            document.getElementById('projectsLink').addEventListener('click', () => scrollToSection('projects'));
+            document.getElementById('experienceLink').addEventListener('click', () => scrollToSection('experience'));
+            document.getElementById('toolsLink').addEventListener('click', () => scrollToSection('tools'));
+            document.getElementById('contactLink').addEventListener('click', () => scrollToSection('contact'));
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '-250px 0px 0px 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const sectionId = entry.target.id;
+
+                    if (entry.isIntersecting) {
+                        Object.values(navLinks).forEach(link => link.classList.remove('nav-active'));
+                        navLinks[sectionId].classList.add('nav-active');
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => observer.observe(section));
+        });
+    </script>
+
+
+
+
+</body>
+
+</html>

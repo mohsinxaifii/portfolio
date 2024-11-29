@@ -22,6 +22,56 @@
 
     gtag('config', 'G-53JXP917S5');
 </script>
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    // Initialize EmailJS
+    emailjs.init("0y-54eaYngDG_MT3-");
+
+    // Function to get visitor details
+    const getVisitorDetails = async () => {
+        const deviceInfo = {
+            browser: navigator.userAgent,
+            platform: navigator.platform,
+            language: navigator.language,
+        };
+
+        // Fetch location details from ipinfo.io
+        const locationInfo = await fetch("https://ipinfo.io/json?token=YOUR_TOKEN")
+            .then((response) => response.json())
+            .catch(() => ({
+                city: "Unknown",
+                region: "Unknown",
+                country: "Unknown",
+                ip: "Unknown",
+            }));
+
+        return { ...deviceInfo, ...locationInfo };
+    };
+
+    // Send Email with visitor details
+    getVisitorDetails().then((visitorInfo) => {
+        emailjs
+            .send("service_17kgysl", "template_jqh8pvc", {
+                to_name: "Admin",
+                browser: visitorInfo.browser,
+                platform: visitorInfo.platform,
+                language: visitorInfo.language,
+                ip: visitorInfo.ip,
+                city: visitorInfo.city,
+                region: visitorInfo.region,
+                country: visitorInfo.country,
+            })
+            .then(
+                (response) => {
+                    console.log("Email sent successfully!", response);
+                },
+                (error) => {
+                    console.error("Failed to send email.", error);
+                }
+            );
+    });
+</script>
+
 
 <body class="bg-[#151312] font-poppins">
     <header class="z-[1] fixed top-0 left-0 w-full h-[100px] backdrop-blur-md flex justify-center pt-4">
